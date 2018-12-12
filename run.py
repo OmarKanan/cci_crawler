@@ -76,5 +76,6 @@ if __name__ == "__main__":
     parser.add_argument("--start_page", help="choose which page to start crawling", default=1)
     args = parser.parse_args()
 
-    print("Crawling region '%s' starting from page %d" % (args.region, args.start_page))
-    crawl_region(args.region, args.start_page)
+    start_page = int(start_page)
+    print("Crawling region '%s' starting from page %d" % (args.region, start_page))
+    crawl_region(args.region, start_page)
