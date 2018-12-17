@@ -52,6 +52,13 @@ def save_results(results, region, page):
     utils.add_log(region, "Page %d done" % page)
 
 
+def save_concatenated_excel(region):
+    filenames = sorted(glob(os.path.join(RESULTS_DIR, region, "*")), key=lambda x: int(re.findall("\d+", x)[0]))
+    dataset = pd.concat((pd.read_csv(f, sep="\t", index_col=0) for f in filenames), ignore_index=True)
+    dataset.to_excel(os.path.join(RESULTS_DIR, region + ".xls"), region, index=False, encoding="utf-8")
+    utils.add_log(region=region, text="\nREGION DONE\nSaved %s" % os.path.join(RESULTS_DIR, region + ".xls"))
+
+
 def iter_results_pages(region, start_page, num_iter):
     user_agent = utils.random_user_agent()
     home_page_response, cookies, p_auth = request_home(user_agent=user_agent)
@@ -79,13 +86,6 @@ def iter_results_pages(region, start_page, num_iter):
     return True
 
 
-def concatenate_results(region):
-    filenames = sorted(glob(os.path.join(RESULTS_DIR, region, "*")), key=lambda x: int(re.findall("\d+", x)[0]))
-    dataset = pd.concat((pd.read_csv(f, sep="\t", index_col=0) for f in filenames), ignore_index=True)
-    dataset.to_excel(os.path.join(RESULTS_DIR, region + ".xls"), region, index=False, encoding="utf-8")
-    utils.add_log(region=region, text="\nREGION DONE\nSaved %s" % os.path.join(RESULTS_DIR, region + ".xls"))
-
-
 def crawl_region(region, start_page):
     should_continue = True
     while should_continue:
@@ -94,7 +94,7 @@ def crawl_region(region, start_page):
             start_page += NUM_REQUESTS_BEFORE_PAUSE
             sleep(PAUSE_SLEEP)
     try:
-        concatenate_results(region)
+        save_concatenated_excel(region)
     except Exception as e:
         utils.add_log(region, str(e))
 
