@@ -1,7 +1,14 @@
+import os
+import re
+import subprocess
 import argparse
+
+from glob import glob
 from time import sleep
 
 import numpy as np
+import pandas as pd
+
 import utils
 from config import *
 from constants import *
@@ -43,7 +50,12 @@ def iter_results_pages(region, start_page, num_iter):
     user_agent = utils.random_user_agent()
     home_page_response, cookies, p_auth = request_home(user_agent=user_agent)
 
-    results, total_num_pages = request_results(p_auth=p_auth, cookies=cookies, region=region, user_agent=user_agent)
+    try:
+        results, total_num_pages = request_results(p_auth=p_auth, cookies=cookies, region=region, user_agent=user_agent)
+    except Exception as e:
+        utils.add_log(region, str(e))
+        return False
+        
     if start_page == 1:
         sleep(np.random.random() * (MAX_SLEEP - MIN_SLEEP) + MIN_SLEEP)
         save_results(results=results, region=region, page=1)
@@ -60,15 +72,24 @@ def iter_results_pages(region, start_page, num_iter):
 
     return True
 
+def concatenate_results(region):
+    filenames = sorted(glob(os.path.join(RESULTS_DIR, region, "*")), key=lambda x: int(re.findall("\d+", x)[0]))
+    dataset = pd.concat((pd.read_csv(f, sep="\t", index_col=0) for f in filenames), ignore_index=True)
+    dataset.to_excel(os.path.join(RESULTS_DIR, region + ".xls"), region, index=False, encoding="utf-8")
+    utils.add_log(region=region, text="\nREGION DONE\nSaved %s" % os.path.join(RESULTS_DIR, region + ".xls"))
 
 def crawl_region(region, start_page):
     should_continue = True
     while should_continue:
         should_continue = iter_results_pages(region=region, start_page=start_page, num_iter=NUM_REQUESTS_BEFORE_PAUSE)
-        start_page += NUM_REQUESTS_BEFORE_PAUSE
-        sleep(PAUSE_SLEEP)
-    utils.add_log(region, "\nREGION DONE")
-
+        if should_continue:
+            start_page += NUM_REQUESTS_BEFORE_PAUSE
+            sleep(PAUSE_SLEEP)
+    try:
+        concatenate_results(region)
+    except Exception as e:
+        utils.add_log(region, str(e))
+        
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
