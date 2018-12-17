@@ -39,7 +39,7 @@ class REGION:
     OCCITANIE = "occitanie"
     PAYS_DE_LA_LOIRE = "pays_de_la_loire"
     PROVENCE_ALPES_COTE_DAZUR = "provence_alpes_cote_dazur"
-    
+
 
 REGION_CODES = {
     REGION.AUVERGNE_RHONE_ALPES: "84",
@@ -62,7 +62,6 @@ REGION_CODES = {
     REGION.PAYS_DE_LA_LOIRE: "52",
     REGION.PROVENCE_ALPES_COTE_DAZUR: "93",
 }
-
 
 REGIONS_LIST = sorted([x[1] for x in REGION.__dict__.items() if not x[0].startswith("__")])
 assert set(REGION_CODES) == set(REGIONS_LIST)
