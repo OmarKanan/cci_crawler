@@ -99,7 +99,7 @@ def crawl_region(region, start_page):
         utils.add_log(region, str(e))
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser()
 
     group = parser.add_mutually_exclusive_group(required=True)
@@ -111,15 +111,19 @@ if __name__ == "__main__":
 
     parser.add_argument("--start", default=1, type=int,
                         help="(requires --region) choose which page to start crawling, for example: \"--start 1\"")
+    args = parser.parse_args()
 
     if "--start" in sys.argv and "--region" not in sys.argv:
         parser.error("--start requires --region")
 
-    args = parser.parse_args()
     regions_list = [args.region] if args.region else args.regions if args.regions else REGIONS_LIST
-
     print("-" * 50 + "\nREGIONS THAT WILL BE CRAWLED:\n %s\n" % regions_list + "-" * 50)
+
     for region in regions_list:
         print("Crawling region '%s' starting from page %d" % (region, args.start))
         crawl_region(region, args.start)
         print("-" * 50)
+
+
+if __name__ == "__main__":
+    main()
