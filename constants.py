@@ -20,47 +20,47 @@ class COLUMN:
 
 
 class REGION:
-    #AUVERGNE_RHONE_ALPES = "auvergne_rhone_alpes"
-    #BOURGOGNE_FRANCHE_COMTE = "bourgogne_franche_comte"
-    #BRETAGNE = "bretagne"
-    #CENTRE_VAL_DE_LOIRE = "centre_val_de_loire"
-    #COLLECTIVITES_DOUTRE_MER = "collectivites_doutre_mer"
-    #CORSE = "corse"
-    #GRAND_EST = "grand_est"
-    #GUADELOUPE = "guadeloupe"
-    #GUYANE = "guyane"
-    #HAUTS_DE_FRANCE = "hauts_de_france"
-    #ILE_DE_FRANCE = "ile_de_france"
-    #LA_REUNION = "la_reunion"
-    #MARTINIQUE = "martinique"
+    AUVERGNE_RHONE_ALPES = "auvergne_rhone_alpes"
+    BOURGOGNE_FRANCHE_COMTE = "bourgogne_franche_comte"
+    BRETAGNE = "bretagne"
+    CENTRE_VAL_DE_LOIRE = "centre_val_de_loire"
+    COLLECTIVITES_DOUTRE_MER = "collectivites_doutre_mer"
+    CORSE = "corse"
+    GRAND_EST = "grand_est"
+    GUADELOUPE = "guadeloupe"
+    GUYANE = "guyane"
+    HAUTS_DE_FRANCE = "hauts_de_france"
+    ILE_DE_FRANCE = "ile_de_france"
+    LA_REUNION = "la_reunion"
+    MARTINIQUE = "martinique"
     MAYOTTE = "mayotte"
-    #NORMANDIE = "normandie"
-    #NOUVELLE_AQUITAINE = "nouvelle_aquitaine"
-    #OCCITANIE = "occitanie"
-    #PAYS_DE_LA_LOIRE = "pays_de_la_loire"
-    #PROVENCE_ALPES_COTE_DAZUR = "provence_alpes_cote_dazur"
+    NORMANDIE = "normandie"
+    NOUVELLE_AQUITAINE = "nouvelle_aquitaine"
+    OCCITANIE = "occitanie"
+    PAYS_DE_LA_LOIRE = "pays_de_la_loire"
+    PROVENCE_ALPES_COTE_DAZUR = "provence_alpes_cote_dazur"
     
 
 REGION_CODES = {
-    #REGION.AUVERGNE_RHONE_ALPES: "84",
-    #REGION.BOURGOGNE_FRANCHE_COMTE: "27",
-    #REGION.BRETAGNE: "53",
-    #REGION.CENTRE_VAL_DE_LOIRE: "24",
-    #REGION.COLLECTIVITES_DOUTRE_MER: "99",
-    #REGION.CORSE: "94",
-    #REGION.GRAND_EST: "44",
-    #REGION.GUADELOUPE: "01",
-    #REGION.GUYANE: "03",
-    #REGION.HAUTS_DE_FRANCE: "32",
-    #REGION.ILE_DE_FRANCE: "11",
-    #REGION.LA_REUNION: "04",
-    #REGION.MARTINIQUE: "02",
+    REGION.AUVERGNE_RHONE_ALPES: "84",
+    REGION.BOURGOGNE_FRANCHE_COMTE: "27",
+    REGION.BRETAGNE: "53",
+    REGION.CENTRE_VAL_DE_LOIRE: "24",
+    REGION.COLLECTIVITES_DOUTRE_MER: "99",
+    REGION.CORSE: "94",
+    REGION.GRAND_EST: "44",
+    REGION.GUADELOUPE: "01",
+    REGION.GUYANE: "03",
+    REGION.HAUTS_DE_FRANCE: "32",
+    REGION.ILE_DE_FRANCE: "11",
+    REGION.LA_REUNION: "04",
+    REGION.MARTINIQUE: "02",
     REGION.MAYOTTE: "06",
-    #REGION.NORMANDIE: "28",
-    #REGION.NOUVELLE_AQUITAINE: "75",
-    #REGION.OCCITANIE: "76",
-    #REGION.PAYS_DE_LA_LOIRE: "52",
-    #REGION.PROVENCE_ALPES_COTE_DAZUR: "93",
+    REGION.NORMANDIE: "28",
+    REGION.NOUVELLE_AQUITAINE: "75",
+    REGION.OCCITANIE: "76",
+    REGION.PAYS_DE_LA_LOIRE: "52",
+    REGION.PROVENCE_ALPES_COTE_DAZUR: "93",
 }
 
 
