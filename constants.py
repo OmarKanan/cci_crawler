@@ -61,38 +61,18 @@ REGIONS_LIST = sorted([x[1] for x in REGION.__dict__.items() if not x[0].startsw
 assert set(REGION_CODES) == set(REGIONS_LIST)
 
 
-def create_logs_dirs():
-    logs_dir = os.path.join(os.getcwd(), "logs")
-    if not os.path.exists(logs_dir):
-        os.mkdir(logs_dir)
-    return logs_dir
+def create_dir(name):
+    directory = os.path.join(os.getcwd(), name)
+    if not os.path.exists(directory):
+        os.mkdir(directory)
+    return directory
 
 
-def create_results_dirs():
-    results_dir = os.path.join(os.getcwd(), "results")
-    if not os.path.exists(results_dir):
-        os.mkdir(results_dir)
-
+def create_sub_results_dirs():
     for region in REGIONS_LIST:
-        region_dir = os.path.join(results_dir, region)
+        region_dir = os.path.join(RESULTS_DIR, region)
         if not os.path.exists(region_dir):
             os.mkdir(region_dir)
-
-    return results_dir
-
-
-def create_details_dirs():
-    details_dir = os.path.join(os.getcwd(), "details")
-    if not os.path.exists(details_dir):
-        os.mkdir(details_dir)
-    return details_dir
-
-
-def create_results_with_details_dirs():
-    results_with_details_dir = os.path.join(os.getcwd(), "results_with_details")
-    if not os.path.exists(results_with_details_dir):
-        os.mkdir(results_with_details_dir)
-    return results_with_details_dir
 
 
 def create_user_agents_list():
@@ -101,10 +81,11 @@ def create_user_agents_list():
     return user_agents
 
 
-LOGS_DIR = create_logs_dirs()
-RESULTS_DIR = create_results_dirs()
-DETAILS_DIR = create_details_dirs()
-RESULTS_WITH_DETAILS_DIR = create_results_with_details_dirs()
+LOGS_DIR = create_dir("logs")
+RESULTS_DIR = create_dir("results")
+DETAILS_DIR = create_dir("details")
+RESULTS_WITH_DETAILS_DIR = create_dir("results_with_details")
+create_sub_results_dirs()
 
 USER_AGENTS_LIST = create_user_agents_list()
 
