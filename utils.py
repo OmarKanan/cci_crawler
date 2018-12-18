@@ -1,6 +1,7 @@
 import math
 import re
 import subprocess
+import traceback
 
 import numpy as np
 import pandas as pd
@@ -10,7 +11,9 @@ from config import *
 from constants import *
 
 
-def add_log(region, text):
+def add_log(region, text, is_exception=False):
+    if is_exception:
+        text = traceback.format_exc()
     print(text)
     with open(os.path.join(LOGS_DIR, "%s.txt" % region), mode="a") as f:
         f.write(text + "\n")
@@ -100,3 +103,14 @@ def retrieve_page_results(response, page):
     if not tables:
         raise Exception("No table of class 'tableauResultat' found")
     return retrieve_table_results(tables[-1], page)
+
+
+def retrieve_details(response, region):
+    soup = BeautifulSoup(response, "html.parser")
+    headers = soup.findAll(attrs={"class": "caim-doc-main"})
+    if not headers:
+        raise Exception("No header of class 'caim-doc-main' found")
+    details = [li.get_text() for li in headers[0].findAll("li")]
+    if not details:
+        add_log(region=region, text="No details found")
+    return details + [np.nan] * (3 - len(details))

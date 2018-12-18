@@ -88,3 +88,18 @@ class RESULTS_PAGE_REQUEST:
             "Accept-Encoding": "gzip, deflate, br",
             "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
         }
+
+
+class CARTE_PRO_REQUEST:
+    @staticmethod
+    def headers(user_agent):
+        return {
+            "Host": "www.cci.fr",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
+            "User-Agent": user_agent,
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+            "Referer": HOME_REQUEST.url,
+            "Accept-Encoding": "gzip, deflate, br",
+            "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+        }

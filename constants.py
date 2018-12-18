@@ -1,15 +1,6 @@
 import os
 
 
-def create_user_agents_list():
-    with open("user_agents.txt") as f:
-        user_agents = [x.strip() for x in f.readlines()]
-    return user_agents
-
-
-USER_AGENTS_LIST = create_user_agents_list()
-
-
 class COLUMN:
     PAGE = "page"
     NOM = "nom"
@@ -17,6 +8,9 @@ class COLUMN:
     URL = "url"
     LIEU = "lieu"
     REGION = "region"
+    DETAIL_1 = "detail_1"
+    DETAIL_2 = "detail_2"
+    DETAIL_3 = "detail_3"
 
 
 class REGION:
@@ -87,12 +81,38 @@ def create_results_dirs():
     return results_dir
 
 
-RESULTS_DIR = create_results_dirs()
+def create_details_dirs():
+    details_dir = os.path.join(os.getcwd(), "details")
+    if not os.path.exists(details_dir):
+        os.mkdir(details_dir)
+    return details_dir
+
+
+def create_results_with_details_dirs():
+    results_with_details_dir = os.path.join(os.getcwd(), "results_with_details")
+    if not os.path.exists(results_with_details_dir):
+        os.mkdir(results_with_details_dir)
+    return results_with_details_dir
+
+
+def create_user_agents_list():
+    with open("user_agents.txt") as f:
+        user_agents = [x.strip() for x in f.readlines()]
+    return user_agents
+
+
 LOGS_DIR = create_logs_dirs()
+RESULTS_DIR = create_results_dirs()
+DETAILS_DIR = create_details_dirs()
+RESULTS_WITH_DETAILS_DIR = create_results_with_details_dirs()
+
+USER_AGENTS_LIST = create_user_agents_list()
 
 NUM_RESULTS_BY_PAGE = 10
 
 MIN_SLEEP = 1
 MAX_SLEEP = 5
 NUM_REQUESTS_BEFORE_PAUSE = 30
-PAUSE_SLEEP = 60
+PAUSE_SLEEP = 30
+
+CARTE_PRO = "Carte Professionnelle"

@@ -1,5 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .DS_Store
+__pycache__/
 .idea/
 logs/
 results/
+results_with_details/
+details/
